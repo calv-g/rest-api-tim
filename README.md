@@ -22,4 +22,4 @@ or
 	"path":"./images/bar.jpg"
 }
 ```
- - For GET request, simply refresh the browser.
+ - For GET request, simply refresh the browser page.
