@@ -10,7 +10,7 @@ A simple Node App for internship application at Thread in Motion.
 5. View in browser:``http://localhost:3000/``
 
 # Usage
-For POST request, add your image path as ``JSON`` format to the body, for example:
+ - For POST request, add your image path as ``JSON`` to the body, for example:
 ```json
 {
 	"path":"./foo.png"
@@ -22,4 +22,4 @@ or
 	"path":"./images/bar.jpg"
 }
 ```
-For GET request, simply refresh the browser.
+ - For GET request, simply refresh the browser.
