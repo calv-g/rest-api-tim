@@ -6,7 +6,7 @@ var app = express();
 
 var Image = require('./models/image');
 
-var db = mongoose.connect('mongodb://localhost:27017/images',{useNewUrlParser:true, useUnifiedTopology:true });
+var db = mongoose.connect('mongodb address here',{useNewUrlParser:true, useUnifiedTopology:true });
 
 
 app.use(bodyParser.json());
