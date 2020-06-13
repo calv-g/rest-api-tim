@@ -1,6 +1,6 @@
 
 # REST API - TIM
-A simple Node App for internship application at Thread in Motion.
+A simple Node app using MongoDB for internship application at Thread in Motion.
 
 # Installation
 1. Clone the repository: ``git clone https://github.com/calv-g/rest-api-tim.git``
