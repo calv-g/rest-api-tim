@@ -8,30 +8,40 @@ var Image = require('./models/image');
 
 var db = mongoose.connect('mongodb address here',{useNewUrlParser:true, useUnifiedTopology:true });
 
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.post('/', function(request, response){
-    Image.deleteMany({}, function(err){
-        if(err){
-            throw err;
-        }
-
+    if(request.body.path === ""){
+        response.status(500).send("Path cannot be empty!");
+    }
+    else{
         var image = new Image();
         var imgPath = request.body.path;
-        image.img.data = fs.readFileSync(imgPath);
-        image.img.contentType = "image/png";
 
-        image.save(function(err, newImage){
-            if(err){
-                throw err;
-            }
-            response.contentType(newImage.img.contentType);
-            response.send(newImage.img.data);
-            console.log("image added");
-        });
-    });
+        try{
+            image.img.data = fs.readFileSync(imgPath);
+            image.img.contentType = "image/png";
+            image.save(function(err, newImage){
+                if(err){
+                    throw err;
+                }
+                response.contentType(newImage.img.contentType);
+                response.send(newImage.img.data);
+                console.log("image added");
+            });
+
+            Image.deleteMany({}, function(err){
+                if(err){
+                    throw err;
+                }
+            });
+
+        }
+        catch(err){
+            response.status(500).send("Image not found!");
+        }
+    }
 });
 
 app.get('/', function (request, response) {
