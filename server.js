@@ -22,6 +22,13 @@ app.post('/', function(request, response){
         try{
             image.img.data = fs.readFileSync(imgPath);
             image.img.contentType = "image/png";
+            
+            Image.deleteMany({}, function(err){
+                if(err){
+                    throw err;
+                }
+            });
+
             image.save(function(err, newImage){
                 if(err){
                     throw err;
@@ -30,13 +37,6 @@ app.post('/', function(request, response){
                 response.send(newImage.img.data);
                 console.log("image added");
             });
-
-            Image.deleteMany({}, function(err){
-                if(err){
-                    throw err;
-                }
-            });
-
         }
         catch(err){
             response.status(500).send("Image not found!");
